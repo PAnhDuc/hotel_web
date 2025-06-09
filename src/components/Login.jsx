@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
 import '../assets/css/style.css';
-import logo from '../assets/img/logo.png';
 import instance from '../API/axios'; // Thêm dòng này
 
 export const Login = () => {
@@ -54,8 +53,8 @@ export const Login = () => {
             localStorage.setItem('token', data.token);
             localStorage.setItem('user', JSON.stringify(data.user));
 
-            // Điều hướng đến trang home sau khi đăng nhập thành công
-            navigate('/home');
+            // Điều hướng đến trang admin sau khi đăng nhập thành công
+            navigate('/admin');
         } catch (err) {
             setError(err.response?.data?.error || err.message || 'Login failed');
             console.error('Login error:', err);

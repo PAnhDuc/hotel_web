@@ -61,13 +61,13 @@ const Sidebar = () => {
           <Link to="/users" style={{ textDecoration: "none" }}>
             <li className="menu-item">
               <PersonOutlineIcon className="icon" />
-              <span>Users</span>
+              <span>Quản lí tài khoản</span>
             </li>
           </Link>
           <Link to="/rooms" style={{ textDecoration: "none" }}>
             <li className="menu-item">
               <MeetingRoomIcon className="icon" />
-              <span>Rooms</span>
+              <span>Quản lí phòng</span>
             </li>
           </Link>
 
@@ -75,7 +75,7 @@ const Sidebar = () => {
           <Link to="/services" style={{ textDecoration: "none" }}>
             <li className="menu-item">
               <MiscellaneousServicesIcon className="icon" />
-              <span>Service</span>
+              <span>Dịch vụ</span>
             </li>
           </Link>
           <Link to="/checkincheckout" style={{ textDecoration: "none" }}>
@@ -87,7 +87,7 @@ const Sidebar = () => {
           <Link to="/payment" style={{ textDecoration: "none" }}>
             <li className="menu-item">
               <CreditCardIcon className="icon" />
-              <span>Payment</span>
+              <span>Thanh toán</span>
             </li>
           </Link>
           <Link to="/customer" style={{ textDecoration: "none" }}>
@@ -101,7 +101,7 @@ const Sidebar = () => {
           <Link to="/notification" style={{ textDecoration: "none" }}>
             <li className="menu-item">
               <NotificationsNoneIcon className="icon" />
-              <span>Notifications</span>
+              <span>Thông báo</span>
             </li>
           </Link>
           <Link to="/log" style={{ textDecoration: "none" }}>
@@ -112,13 +112,13 @@ const Sidebar = () => {
           </Link>
           <li className="menu-item">
             <SettingsApplicationsIcon className="icon" />
-            <span>Settings</span>
+            <span>Cài đặt</span>
           </li>
 
           <p className="title">USER</p>
           <li className="menu-item" onClick={handleLogout}>
             <ExitToAppIcon className="icon" />
-            <span>Logout</span>
+            <span>Đăng xuất</span>
           </li>
 
           {showConfirmation && (

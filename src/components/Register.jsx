@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import logo from '../assets/img/logo.png';
 import instance from '../API/axios'; // Thêm dòng này
 
 export const Register = () => {
@@ -81,47 +80,51 @@ export const Register = () => {
                             <div className="card mb-3">
                                 <div className="card-body">
                                     <div className="pt-4 pb-2">
-                                        <h5 className="card-title text-center pb-0 fs-4">Create an Account</h5>
-                                        <p className="text-center small">Enter your personal details to create account</p>
+                                        <h5 className="card-title text-center pb-0 fs-4">Tạo tài khoản</h5>
+                                        <p className="text-center small">Nhập thông tin cá nhân của bạn để tạo tài khoản</p>
                                     </div>
                                     <form className="row g-3 needs-validation" onSubmit={register}>
                                         <div className="col-12">
-                                            <label htmlFor="username" className="form-label">Username</label>
+                                            <label htmlFor="username" className="form-label">Tên đăng nhập</label>
                                             <input type="text" name="username" value={username} onChange={(e) => setUsername(e.target.value)} className="form-control" id="username" required />
-                                            <div className="invalid-feedback">Please enter a username!</div>
+                                            <div className="invalid-feedback">Vui lòng nhập tên đăng nhập!</div>
                                         </div>
                                         <div className="col-12">
-                                            <label htmlFor="fullName" className="form-label">Full Name</label>
+                                            <label htmlFor="fullName" className="form-label">Họ và tên</label>
                                             <input type="text" name="fullName" value={fullName} onChange={(e) => setFullName(e.target.value)} className="form-control" id="fullName" required />
-                                            <div className="invalid-feedback">Please enter your full name!</div>
+                                            <div className="invalid-feedback">Vui lòng nhập họ và tên!</div>
                                         </div>
                                         <div className="col-12">
                                             <label htmlFor="email" className="form-label">Email</label>
                                             <input type="email" name="email" value={email} onChange={(e) => setEmail(e.target.value)} className="form-control" id="email" required />
-                                            <div className="invalid-feedback">Please enter a valid email!</div>
+                                            <div className="invalid-feedback">Vui lòng nhập email hợp lệ!</div>
                                         </div>
                                         <div className="col-12">
-                                            <label htmlFor="phone" className="form-label">Phone</label>
+                                            <label htmlFor="phone" className="form-label">Số điện thoại</label>
                                             <input type="tel" name="phone" value={phone} onChange={(e) => setPhone(e.target.value)} className="form-control" id="phone" required />
-                                            <div className="invalid-feedback">Please enter a valid phone number!</div>
+                                            <div className="invalid-feedback">Vui lòng nhập số điện thoại hợp lệ!</div>
                                         </div>
                                         <div className="col-12">
-                                            <label htmlFor="password" className="form-label">Password</label>
+                                            <label htmlFor="password" className="form-label">Mật khẩu</label>
                                             <input type="password" name="password" value={password} onChange={(e) => setPassword(e.target.value)} className="form-control" id="password" required />
-                                            <div className="invalid-feedback">Please enter a password!</div>
+                                            <div className="invalid-feedback">Vui lòng nhập mật khẩu!</div>
                                         </div>
                                         <div className="col-12">
                                             <div className="form-check">
                                                 <input className="form-check-input" name="terms" type="checkbox" value="" id="acceptTerms" required />
-                                                <label className="form-check-label" htmlFor="acceptTerms">I agree and accept the <Link to="#">terms and conditions</Link></label>
-                                                <div className="invalid-feedback">You must agree before submitting.</div>
+                                                <label className="form-check-label" htmlFor="acceptTerms">
+                                                    Tôi đồng ý với <Link to="#">điều khoản và điều kiện</Link>
+                                                </label>
+                                                <div className="invalid-feedback">Bạn phải đồng ý trước khi gửi.</div>
                                             </div>
                                         </div>
                                         <div className="col-12">
-                                            <button className="btn btn-primary w-100" type="submit">Create Account</button>
+                                            <button className="btn btn-primary w-100" type="submit">Tạo tài khoản</button>
                                         </div>
                                         <div className="col-12">
-                                            <p className="small mb-0 text-center">Already have an account? <Link to="/login">Login</Link></p>
+                                            <p className="small mb-0 text-center">
+                                                Đã có tài khoản? <Link to="/login">Đăng nhập</Link>
+                                            </p>
                                         </div>
                                     </form>
                                     {error && <p className="text-danger text-center">{error}</p>}

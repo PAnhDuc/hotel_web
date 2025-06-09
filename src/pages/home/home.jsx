@@ -1,15 +1,32 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { FaMapMarkerAlt, FaCalendarAlt, FaHome, FaSearch, FaUser, FaSignOutAlt } from 'react-icons/fa';
 
-const Header = ({ user: initialUser }) => {
-  const [user, setUser] = useState(initialUser);
-  const [showLogoutModal, setShowLogoutModal] = useState(false);
+const Header = () => {
+  const [currentUser, setCurrentUser] = useState(null);
+  const [showLogout, setShowLogout] = useState(false);
+  const navigate = useNavigate();
 
+  // Lấy thông tin người dùng từ localStorage khi load trang
+  useEffect(() => {
+    const userData = localStorage.getItem('user');
+    setCurrentUser(userData);
+  }, []);
+
+  // Đăng xuất
   const handleLogout = () => {
-    setUser(null);
-    setShowLogoutModal(false);
-    // Nếu bạn dùng context hoặc redux thì thay đổi logic này cho phù hợp
+    setCurrentUser(null);
+    localStorage.removeItem('user');
+    setShowLogout(false);
+  };
+
+  // Xử lý khi bấm nút đăng nhập/quản trị
+  const handleMainButton = () => {
+    if (currentUser) {
+      navigate('/admin');
+    } else {
+      alert('Vui lòng đăng nhập để tiếp tục!');
+    }
   };
 
   return (
@@ -37,30 +54,31 @@ const Header = ({ user: initialUser }) => {
 
         {/* Nút đăng ký hoặc tên người dùng */}
         <div>
-          {user ? (
+          {currentUser ? (
             <div className="bg-gradient-to-r from-blue-100 to-white p-2 rounded-lg shadow-md flex items-center space-x-2">
               <FaUser className="text-blue-600" />
-              <span className="text-gray-700 font-medium">{user}</span>
+              <span className="text-gray-700 font-medium">{currentUser}</span>
               <button
                 className="ml-2 text-red-500 hover:text-red-700"
                 title="Đăng xuất"
-                onClick={() => setShowLogoutModal(true)}
+                onClick={() => setShowLogout(true)}
               >
                 <FaSignOutAlt size={18} />
               </button>
             </div>
           ) : (
-            <Link to="/auth">
-              <button className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg transition">
-                Sign up
-              </button>
-            </Link>
+            <button
+              className="bg-blue-600 hover:bg-blue-700 text-white px-5 py-2 rounded-lg transition"
+              onClick={handleMainButton}
+            >
+              Đăng nhập
+            </button>
           )}
         </div>
       </nav>
 
       {/* Modal xác nhận đăng xuất */}
-      {showLogoutModal && (
+      {showLogout && (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-40 z-50">
           <div className="bg-white rounded-lg shadow-xl p-8 min-w-[320px] flex flex-col items-center">
             <p className="mb-6 text-lg font-medium text-gray-800">Bạn có muốn đăng xuất?</p>
@@ -73,7 +91,7 @@ const Header = ({ user: initialUser }) => {
               </button>
               <button
                 className="bg-gray-300 text-gray-700 px-5 py-2 rounded-lg hover:bg-gray-400"
-                onClick={() => setShowLogoutModal(false)}
+                onClick={() => setShowLogout(false)}
               >
                 Hủy
               </button>
@@ -105,6 +123,7 @@ const Header = ({ user: initialUser }) => {
         </div>
       </div>
 
+      {/* Thanh tìm kiếm */}
       <div className="bg-white shadow-lg rounded-full px-6 py-4 mt-12 flex items-center justify-between gap-6 max-w-6xl mx-auto">
         <div className="flex flex-col text-sm">
           <label className="flex items-center gap-2"><FaMapMarkerAlt /> Địa điểm</label>

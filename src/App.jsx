@@ -27,7 +27,7 @@ function App() {
         <Routes>
 
           {/* Trang chính */}
-          <Route path="/dashboard" element={<DashboardAdmin />} />
+          <Route path="/admin" element={<DashboardAdmin />} />
           {/* Trang đăng nhập, đăng ký */}
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
